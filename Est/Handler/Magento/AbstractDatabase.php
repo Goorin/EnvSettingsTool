@@ -42,7 +42,7 @@ abstract class Est_Handler_Magento_AbstractDatabase extends Est_Handler_Abstract
                 throw new Exception(sprintf('Could not load xml file "%s"', $localXmlFile));
             }
 
-            $this->tablePrefix = (string)$config->global->resources->db->table_prefix;
+            $this->_tablePrefix = (string)$config->global->resources->db->table_prefix;
 
             return array(
                 'host' => (string)$config->global->resources->default_setup->connection->host,
