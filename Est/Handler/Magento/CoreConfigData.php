@@ -177,6 +177,7 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 	 */
 	protected function getDatabaseConnectionParameters() {
 		$localXmlFile = 'app/etc/local.xml';
+		$debug = true;
 
 		if (!is_file($localXmlFile)) {
 			throw new Exception(sprintf('File "%s" not found', $localXmlFile));
@@ -188,6 +189,18 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 		}
 
         $this->tablePrefix = (string)$config->global->resources->db->table_prefix;
+
+		if($debug) {
+			echo "--start debug info--" . PHP_EOL;
+			echo "executing script: " . __FILE__ . PHP_EOL;
+			$stack = debug_backtrace();
+			$firstFrame = $stack[count($stack) - 1];
+			$initialFile = $firstFrame['file'];
+			echo "initial script execution file: " . $initialFile . PHP_EOL;
+			echo "database connection username: "
+				. (string)$config->global->resources->default_setup->connection->username;
+			echo "--end debug info--";
+		}
 
 		return array(
 			'host' => (string)$config->global->resources->default_setup->connection->host,
