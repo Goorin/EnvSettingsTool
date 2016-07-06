@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/opt/rh/php55/root/usr/bin/php
 <?php
 
 if (version_compare(PHP_VERSION, '5.3.0') <= 0) {
