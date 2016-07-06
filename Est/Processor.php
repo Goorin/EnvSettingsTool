@@ -25,6 +25,8 @@ class Est_Processor {
     protected $groups = array();
     protected $excludedGroups = array();
 
+	protected $debugMode = true;
+
 
     /**
      * Constructor
@@ -76,7 +78,8 @@ class Est_Processor {
 		foreach ($this->handlerCollection as $handler) { /* @var $handler Est_Handler_Abstract */
 			$res = $handler->apply();
 			if (!$res) {
-				throw new Exception('An error in handler'.$handler->getLabel());
+				throw new Exception('Exception thrown in Est_Processor::apply(). An error in handler '
+					. $handler->getLabel());
 			}
 		}
 		return true;

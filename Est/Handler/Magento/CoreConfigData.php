@@ -70,7 +70,8 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 			$res = $query->execute($sqlParameters);
 
 			if ($res === false) {
-				throw new Exception('Error while deleting rows');
+				$errInfo = $query->errorInfo();
+				throw new Exception('Error while deleting rows: ' . $errInfo[2]);
 			}
 
 			$rowCount = $query->rowCount();
