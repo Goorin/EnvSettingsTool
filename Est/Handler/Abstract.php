@@ -18,7 +18,7 @@ abstract class Est_Handler_Abstract implements Est_Handler_Interface {
 	protected $param3;
 	protected $value;
 
-
+	protected $debugMode = true;
 
 	protected $status = Est_Handler_Interface::STATUS_NOTEXECUTED;
 

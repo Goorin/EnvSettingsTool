@@ -19,7 +19,9 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 	 * @return bool
 	 */
 	protected function _apply() {
-
+		if($this->debugMode) {
+			echo "Executing Est_Handler_Magento_CoreConfigData::_apply()" . PHP_EOL;
+		}
 		$scope = $this->param1;
 		$scopeId = $this->param2;
 		$path = $this->param3;
@@ -58,6 +60,9 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 			':path' => $path
 		 );
 
+		if($this->debugMode) {
+			echo "Calling Est_Handler_Magento_CoreConfigData::getDbConnection()" . PHP_EOL;
+		}
 		$conn = $this->getDbConnection();
 
 		if (strtolower(trim($this->value)) == '--delete--') {
@@ -177,7 +182,6 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 	 */
 	protected function getDatabaseConnectionParameters() {
 		$localXmlFile = 'app/etc/local.xml';
-		$debug = true;
 
 		if (!is_file($localXmlFile)) {
 			throw new Exception(sprintf('File "%s" not found', $localXmlFile));
@@ -190,7 +194,7 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 
         $this->tablePrefix = (string)$config->global->resources->db->table_prefix;
 
-		if($debug) {
+		if($this->debugMode) {
 			echo "--start debug info--" . PHP_EOL;
 			echo "executing script: " . __FILE__ . PHP_EOL;
 			$stack = debug_backtrace();
