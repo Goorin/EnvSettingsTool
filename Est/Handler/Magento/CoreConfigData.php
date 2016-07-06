@@ -199,7 +199,7 @@ class Est_Handler_Magento_CoreConfigData extends Est_Handler_AbstractDatabase {
 			echo "initial script execution file: " . $initialFile . PHP_EOL;
 			echo "database connection username: "
 				. (string)$config->global->resources->default_setup->connection->username;
-			echo "--end debug info--";
+			echo "--end debug info--" . PHP_EOL;
 		}
 
 		return array(
